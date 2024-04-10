@@ -16,11 +16,9 @@
 
 def line(x, y):
     if y == '':
-        input_string = '*'
-    else:
-        input_string = y[0]
-    print(input_string * x)
+        y = '*'
+    print(y * x)
 
 
-line(10, 'LOL')
+line(10, '%')
 
