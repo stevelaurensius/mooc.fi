@@ -8,10 +8,8 @@
 
 def line(x, y):
     if y == '':
-        input_string = '*'
-    else:
-        input_string = y[0]
-    print(input_string * x)
+        y = '*'
+    print(y[0] * x)
 
 
 def box_of_hashes(height):
@@ -21,6 +19,5 @@ def box_of_hashes(height):
         i += 1
 
 
-# You can test your function by calling it within the following block
 if __name__ == "__main__":
     box_of_hashes(5)
