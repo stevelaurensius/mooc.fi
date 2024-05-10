@@ -1,8 +1,6 @@
 ## mooc.fi
 mooc.fi stands for Massive Open Online Course (MOOC) offered by the University of Helsinki in Finland. It is a series of courses primarily focused on teaching computer science and programming skills. I started the python programming on March 8, 2024 and this repository is the exercise log
 
-This repository serves as a documentation of my journey learning Python through the MOOC.fi course. It's a personal space where I track my progress, store code snippets, and reflect on my learning journey.
-
 ## Overview
 
 In this repository, you'll find:
