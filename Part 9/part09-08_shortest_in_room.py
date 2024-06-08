@@ -34,7 +34,7 @@ class Room:
             print(f'{i.name} ({i.height} cm)')
 
     def shortest(self):
-        if self.is_empty() == True:
+        if self.is_empty():
             return None
         else:
             shortest_student = min(self.person, key=lambda student: student.height)
