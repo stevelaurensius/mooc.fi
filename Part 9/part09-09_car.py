@@ -6,7 +6,7 @@ class Car:
     def fill_up(self):
         self.__petrol = 60
 
-    def drive(self, km:int):
+    def drive(self, km: int):
         if self.__petrol == 0:
             pass
         elif self.__petrol < km:
