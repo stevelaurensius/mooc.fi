@@ -53,9 +53,9 @@ class OrderBook:
                 programmers.append(order.programmer)
         return programmers
 
-    def mark_finished(self, id: int):
+    def mark_finished(self, id_: int):
         for item in self.order_book:
-            if item.id == id:
+            if item.id == id_:
                 item.mark_finished()
                 return
         raise ValueError('id not found')
@@ -83,14 +83,14 @@ class OrderBook:
         for item in self.order_book:
             if item.programmer == programmer:
                 programmer_found = True
-                if item.programmer == programmer and item.is_finished() == True:
+                if item.programmer == programmer and item.is_finished():
                     finished_task += 1
-                elif item.programmer == programmer and item.is_finished() == False:
+                elif item.programmer == programmer and not item.is_finished():
                     unfinished_task += 1
 
-                if item.programmer == programmer and item.is_finished() == True:
+                if item.programmer == programmer and item.is_finished():
                     finished_time += item.workload
-                elif item.programmer == programmer and item.is_finished() == False:
+                elif item.programmer == programmer and not item.is_finished():
                     unfinished_time += item.workload
 
         if not programmer_found:
