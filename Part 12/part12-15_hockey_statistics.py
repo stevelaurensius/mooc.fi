@@ -1,6 +1,11 @@
 import json
 
 
+def output(player, team, goal, assist, contribution):
+    print(player.ljust(20, ' '), team, str(goal).rjust(3, ' '), '+', str(assist).rjust(2, ' '),
+          '=', str(contribution).rjust(3, ' '))
+
+
 def read_file(file_name):
     with open(file_name) as my_file:
         data = my_file.read()
@@ -12,15 +17,10 @@ def read_file(file_name):
 
 
 def instructions():
-    print('commands:')
-    print('0 quit')
-    print('1 search for player')
-    print('2 teams')
-    print('3 countries')
-    print('4 players in team')
-    print('5 players from country')
-    print('6 most points')
-    print('7 most goals')
+    command_list = ['commands:', '0 quit', '1 search for player', '2 teams', '3 countries',
+                    '4 players in team', '5 players from country', '6 most points', '7 most goals']
+    for command in command_list:
+        print(command)
     print()
 
 
@@ -28,25 +28,14 @@ def search_for_player(players):
     player_name = str(input('name: '))
     for player in players:
         if player['name'] == player_name:
-            player_output = player['name']
-            team_output = player['team']
-            goal_output = player['goals']
-            assist_output = player['assists']
-            contributions = goal_output + assist_output
             print()
-            print(player_output.ljust(20, ' '),
-                  team_output,
-                  str(goal_output).rjust(3, ' '),
-                  '+',
-                  str(assist_output).rjust(2, ' '),
-                  '=',
-                  str(contributions).rjust(3, ' '))
+            output(player['name'], player['team'], player['goals'], player['assists'],
+                   (player['goals'] + player['assists']))
             print()
 
 
 def teams(data):
-    result = [team['team'] for team in data]
-    result = list(set(result))
+    result = list(set([team['team'] for team in data]))
     result.sort()
     for team in result:
         print(team)
@@ -54,8 +43,7 @@ def teams(data):
 
 
 def countries(data):
-    result = [country['nationality'] for country in data]
-    result = list(set(result))
+    result = list(set([country['nationality'] for country in data]))
     result.sort()
     for team in result:
         print(team)
@@ -67,19 +55,8 @@ def players_in_team(input_data):
     data = sorted(input_data, key=lambda x: x['name'], reverse=False)
     for player in data:
         if player['team'] == team:
-            player_output = player['name']
-            team_output = player['team']
-            goal_output = player['goals']
-            assist_output = player['assists']
-            contributions = goal_output + assist_output
-            print(player_output.ljust(20, ' '),
-                  team_output,
-                  str(goal_output).rjust(3, ' '),
-                  '+',
-                  str(assist_output).rjust(2, ' '),
-                  '=',
-                  str(contributions).rjust(3, ' '))
-    print()
+            output(player['name'], player['team'], player['goals'], player['assists'],
+                   (player['goals'] + player['assists']))
 
 
 def players_from_country(input_data):
@@ -87,18 +64,8 @@ def players_from_country(input_data):
     data = sorted(input_data, key=lambda x: x['assists'] + x['goals'], reverse=True)
     for player in data:
         if player['nationality'] == country:
-            player_output = player['name']
-            team_output = player['team']
-            goal_output = player['goals']
-            assist_output = player['assists']
-            contributions = goal_output + assist_output
-            print(player_output.ljust(20, ' '),
-                  team_output,
-                  str(goal_output).rjust(3, ' '),
-                  '+',
-                  str(assist_output).rjust(2, ' '),
-                  '=',
-                  str(contributions).rjust(3, ' '))
+            output(player['name'], player['team'], player['goals'], player['assists'],
+                   (player['goals'] + player['assists']))
     print()
 
 
@@ -106,18 +73,8 @@ def most_points(input_data):
     how_many = int(input('how many: '))
     data = sorted(input_data, key=lambda x: x['assists'] + x['goals'], reverse=True)
     for player in data[:how_many]:
-        player_output = player['name']
-        team_output = player['team']
-        goal_output = player['goals']
-        assist_output = player['assists']
-        contributions = goal_output + assist_output
-        print(player_output.ljust(20, ' '),
-              team_output,
-              str(goal_output).rjust(3, ' '),
-              '+',
-              str(assist_output).rjust(2, ' '),
-              '=',
-              str(contributions).rjust(3, ' '))
+        output(player['name'], player['team'], player['goals'], player['assists'],
+               (player['goals'] + player['assists']))
     print()
 
 
@@ -125,18 +82,8 @@ def most_goals(input_data):
     how_many = int(input('how many: '))
     data = sorted(input_data, key=lambda x: (-x['goals'], x['games']))
     for player in data[:how_many]:
-        player_output = player['name']
-        team_output = player['team']
-        goal_output = player['goals']
-        assist_output = player['assists']
-        contributions = goal_output + assist_output
-        print(player_output.ljust(20, ' '),
-              team_output,
-              str(goal_output).rjust(3, ' '),
-              '+',
-              str(assist_output).rjust(2, ' '),
-              '=',
-              str(contributions).rjust(3, ' '))
+        output(player['name'], player['team'], player['goals'], player['assists'],
+               (player['goals'] + player['assists']))
     print()
 
 
